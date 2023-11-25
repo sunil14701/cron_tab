@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Offline</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: rgb(252, 80, 80);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #333;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* loading button */
+        .loading-spinner {
+            border: 8px solid #1c0b0b;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 20px auto;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-spinner p{
+            font-size: 40px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .center-text {
+            text-align: center;
+            color: #4c65af;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>YouTube Downloader</h1>
+    </header>
+
+    <div class="container" id="form-container">
+        <form action="/run_script" method="POST" onsubmit="toggleVisibility()">
+            <label for="userInput">Enter YT URL</label>
+            <input type="text" name="userInput" placeholder="www.Youtube.com" required>
+            <button type="submit" name="submit">Download</button>
+        </form>
+    </div>
+
+    <div class="loading-container hidden" id="loading-container">
+        <div class="loading-spinner"></div>
+        <p class="center-text">DOWNLOADING</p>
+        <button class="hidden" disabled>Loading...</button>
+    </div>
+</body>
+<script>
+    function toggleVisibility() {
+        // Hide the form container
+        document.getElementById('form-container').classList.add('hidden');
+
+        // Show the loading container
+        document.getElementById('loading-container').classList.remove('hidden');
+    }
+</script>
+</html>

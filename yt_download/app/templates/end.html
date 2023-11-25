@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>more yt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome to the Download Page</h1>
+        {{path}}
+        <!-- <a href= '{{path}}' download="{{path}}">
+            <button>Download File</button> 
+        </a> -->
+
+        <a id="downloadLink" href="#" download="desired_filename.mp4">Download Video</a>
+
+
+        <h3>Want to Download more yt videos <a href="/">
+                <p><button> Click here</button></p>
+            </a></h3>
+        </p>
+    </div>
+
+        <script>
+            // Update the href attribute with the correct path to your video file
+            document.getElementById('downloadLink').href = '{{path}}';
+        </script>
+</body>
+
+</html>
