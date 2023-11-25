@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 smtp_server = 'smtp.gmail.com'  # Gmail's SMTP server
 smtp_port = 587  # SMTP port for TLS
 smtp_username = 'linuscodes56@gmail.com'  # Your Gmail email address
-smtp_app_password = 'aalglokelodnxrzu'  # App Password for Gmail
+smtp_app_password = ''  # App Password for Gmail
 receiver_email = 'sunilkumar333221@gmail.com'  # Recipient's email address
 subject = 'PC Started Notification'
 
