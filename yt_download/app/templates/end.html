@@ -51,24 +51,18 @@
 
     <div class="container">
         <h1>Welcome to the Download Page</h1>
-        {{path}}
-        <!-- <a href= '{{path}}' download="{{path}}">
-            <button>Download File</button> 
-        </a> -->
-
-        <a id="downloadLink" href="#" download="desired_filename.mp4">Download Video</a>
-
+        <h3>Download this video <a href="/download">
+                <p><button> Download</button></p>
+            </a>
+        </h3>
 
         <h3>Want to Download more yt videos <a href="/">
                 <p><button> Click here</button></p>
-            </a></h3>
+            </a>
+        </h3>
         </p>
     </div>
 
-        <script>
-            // Update the href attribute with the correct path to your video file
-            document.getElementById('downloadLink').href = '{{path}}';
-        </script>
 </body>
 
 </html>

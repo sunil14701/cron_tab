@@ -1,5 +1,5 @@
 import shutil
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, url_for, redirect, send_from_directory
 import subprocess
 import os 
 
@@ -7,10 +7,9 @@ app = Flask(__name__)
 
 template_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
 app = Flask(__name__, template_folder=template_folder)
-
 download_folder = "./yt_videos"
-def empty_folder():
 
+def empty_folder():
     file = os.listdir(download_folder)
     if(file):
         os.remove(os.path.join(download_folder, file[0]))
@@ -25,20 +24,22 @@ def run_script():
     user_input = request.form.get('userInput')
     print(user_input)
     try:
-        # Run the Python script with user input
-        
         process = subprocess.Popen(['python', 'yt_download.py', f"{user_input}"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, error = process.communicate()
         if process.returncode == 0:
-            file = os.listdir(download_folder)
-            if(file):
-                vid = file[0]
-                path = os.path.join("../yt_videos", vid)
-            return render_template('end.html', message='Script is completed successfully.',path=path)
+            return render_template('end.html')
         else:
             return render_template('end.html', error=f'Script failed with error: {error.decode("utf-8")}')
     except Exception as e:
         return render_template('end.html', error=str(e))
+
+@app.route('/download')
+def download():
+    file = os.listdir(download_folder)
+    if file:
+        return send_from_directory(download_folder, file[0], as_attachment=True)
+    else:
+        return "No files found in the folder."
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
