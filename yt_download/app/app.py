@@ -1,9 +1,10 @@
-import shutil
 from flask import Flask, render_template, request, jsonify, url_for, redirect, send_from_directory
 import subprocess
-import os 
+import os
+from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__)
+run_with_ngrok(app)
 
 template_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
 app = Flask(__name__, template_folder=template_folder)
@@ -26,6 +27,7 @@ def run_script():
     try:
         process = subprocess.Popen(['python', 'yt_download.py', f"{user_input}"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, error = process.communicate()
+        print(output)
         if process.returncode == 0:
             return render_template('end.html')
         else:
@@ -42,4 +44,4 @@ def download():
         return "No files found in the folder."
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
